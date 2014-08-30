@@ -1,0 +1,19 @@
+%this data is created for the puspose of testting Generalized-Specification DBSCAN. 
+%With type attribut on the basis of type Generalization-Specification is done. We create texonomy on attribut 'type'.
+@relation test_data
+
+@attribute type {a,b,c,d}
+@attribute x numeric
+@attribute y numeric
+
+@data
+a,11,3
+a,10,4
+a,11,5
+a,12,4
+d,13,5
+d,12,6
+d,6,10
+d,8,10
+d,5,12
+d,7,12
