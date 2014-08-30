@@ -1,0 +1,17 @@
+%this data is created for the puspose of testting Generalized-Specification DBSCAN.
+@relation test_data
+
+@attribute x numeric
+@attribute y numeric
+
+@data
+11,3
+10,4
+11,5
+12,4
+13,5
+12,6
+6,10
+8,10
+5,12
+7,12
