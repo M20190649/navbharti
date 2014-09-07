@@ -1,6 +1,39 @@
 How to create your own handwriting font:
-1. If you write a letter with e.g. MS Word you have to use one of the fonts installed on your computer. This results in an impersonal look of the document. MyScriptFont.com enables you to use your own handwriting like every other font installed on your computer.
+1. [2] If you write a letter with e.g. MS Word you have to use one of the fonts installed on your computer. This results in an impersonal look of the document. MyScriptFont.com enables you to use your own handwriting like every other font installed on your computer.
 With MyScriptFont.com you can give your digital produced documents a personal touch again. http://www.myscriptfont.com/.
 
 2. We have put together our hand-picked selection of free handwriting fonts. All these fonts are available to use with our handwritten letter application. You can download some of the handwritten font and install to the window or paste the font file to the system font folder and can use the font as normal font thats it.
 
+3. [1] Some of the free tools to create your own font and feed to the system font folder or install that:
+	1. FontStruct
+	FontStruct is a free online font editor, which means you can create your own fonts directly in a web browser, without having to install special software on your computer.
+
+	Once you're happy with your work, you can save and download it as a TrueType font file (.ttf), install it in your computer and use it in any Windows and/or Mac application (e.g. Microsoft Office products, Photoshop and so on). You can even use it as a custom web font for your site.
+	
+	2. FontForge
+	FontForge is a free font editor for the desktop that can be installed in Windows, Mac OS and Linux. You can create your own font from scratch or modify an existing font file. It can handle many font file types, including TrueType (.ttf), PostScript (.ps), OpenType (.otf) and more.
+
+	The user interface of this font editor might seem daunting to beginners at first, so to get you on your way, read over the "steps to creating a font" tutorial on the FontForge website.
+	
+	3. BitfontMaker
+	This online font-building tool allows you to create fonts that have simple, geometric shapes. It's a bitmap font editor, which means that you draw your font's characters (referred to as glyphs) pixel by pixel.
+
+	It's dead simple to use and, once you're done with your font design, you can download and save your font as a TrueType file.
+	
+	4. Type light
+	Available only for Windows, Type light is a freeware font editor that you can use to edit existing font files or to design your own font from scratch. This tool can deal with TrueType, OpenType and PostScript font formats, with the ability to convert font files from one to another. The software is free for personal use and for limited commercial use.
+	
+	5. gbdfed Bitmap Font Editor
+	gdbfed is a free font-creation software that you can use to edit or create your own fonts. It has native support for BDF fonts and other lesser-known font file types, but -- with a little trickery -- it can export to the more popular OpenType font format, too.
+
+	Beware, though, that the installation process of gbdfed can be cumbersome -- it was created for Linux, requires GTK+ to be installed and, for most computer users, will require the use of the command-line to compile the software. It's been tested on Mac OS and, in its current state, doesn't run well on Windows.
+
+	6. Font Constructor
+	This free, Mac-only font editor was produced with the intention of giving students a tool for learning about font construction through hands-on experimentation and training. However, as the creator of the tool says, "Font Constructor is not only meant for students" -- it can be used by graphic and type designers, as well as anyone who wishes to create fonts.
+
+	7. Raster Font Editor
+	Raster Font Editor is a standalone application, which means you can run it directly via your portable storage device (such as a USB flash drive) or cloud storage app, like Dropbox, without having to install it. It's not as robust in features like some of the other tools already mentioned, but it can be a great option for those only needing basic font editing features and software portability.
+	
+References
+1 http://mashable.com/2011/11/17/free-font-creation-tools/
+2 http://www.myscriptfont.com/
