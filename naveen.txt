@@ -1,1 +1,6 @@
-hi my name is naveen bharti!!!nav_bharti
+How to create your own handwriting font:
+1. If you write a letter with e.g. MS Word you have to use one of the fonts installed on your computer. This results in an impersonal look of the document. MyScriptFont.com enables you to use your own handwriting like every other font installed on your computer.
+With MyScriptFont.com you can give your digital produced documents a personal touch again. http://www.myscriptfont.com/.
+
+2. We have put together our hand-picked selection of free handwriting fonts. All these fonts are available to use with our handwritten letter application. You can download some of the handwritten font and install to the window or paste the font file to the system font folder and can use the font as normal font thats it.
+
