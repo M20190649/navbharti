@@ -34,6 +34,44 @@ With MyScriptFont.com you can give your digital produced documents a personal to
 	7. Raster Font Editor
 	Raster Font Editor is a standalone application, which means you can run it directly via your portable storage device (such as a USB flash drive) or cloud storage app, like Dropbox, without having to install it. It's not as robust in features like some of the other tools already mentioned, but it can be a great option for those only needing basic font editing features and software portability.
 	
+	
+http://sourceforge.net/projects/crimestat/
+CrimeStat is an web-application which analyses the police's press releases of Berlin and visualizes the different criminal offences on a map of Berlin. It also shows different statistics about the crimes.
+http://crimestat.sourceforge.net/
+
+Creating Random Points in qgis:
+To generate N number of points in a definded area, we can use Random Point tool that is available in qgis.
+1. Load Polygon layer: That we can do from "Layer -> Add Vector Layer -> Browse -> shape/file/path/ -> Ok".
+2. Vector->Research Tools->Random Points 
+3. Select the Layer name from "Input Boundary Layer" and input the Total number of points that you want to be generated in "use this number of points"
+4. Specify the point shape file name in "Output Shapefile".
+5. Click ok it may take several time depending on number of point that has to be generated.
+
+Random Points generated for Districts of Kerala State:
+1. Arrested Persons (24/08/2014 to 30/08/2014) http://www.keralapolice.gov.in/newsite/active_arrested.html
+Trivandrum City (http://www.keralapolice.gov.in/newsite/pdfs/arrested_persons_2014/august/4/arrested_persons_tvmcity.pdf)
+Trivandrum Rural (http://www.keralapolice.gov.in/newsite/pdfs/arrested_persons_2014/august/4/arrested_persons_tvmrl.pdf) for both the files we have generated one shape file becouse dont have urban and rural polygon of this district.
+Kollam City (http://www.keralapolice.gov.in/newsite/pdfs/arrested_persons_2014/august/4/arrested_persons_klmcity.pdf)
+Kollam Rural (http://www.keralapolice.gov.in/newsite/pdfs/arrested_persons_2014/august/4/arrested_persons_klmrl.pdf) for both the files we have generated one shape file becouse dont have urban and rural polygon of this district.
+Pathanamthitta (http://www.keralapolice.gov.in/newsite/pdfs/arrested_persons_2014/august/4/arrested_persons_pta.pdf)
+Kottayam (http://www.keralapolice.gov.in/newsite/pdfs/arrested_persons_2014/august/4/arrested_persons_ktm.pdf)
+Idukki (http://www.keralapolice.gov.in/newsite/pdfs/arrested_persons_2014/august/4/arrested_persons_idk.pdf)
+Ernakulam City (http://www.keralapolice.gov.in/newsite/pdfs/arrested_persons_2014/august/4/arrested_persons_ekmcity.pdf)
+Ernakulam Rural (http://www.keralapolice.gov.in/newsite/pdfs/arrested_persons_2014/august/4/arrested_persons_ekmrl.pdf) for both the files we have generated one shape file becouse dont have urban and rural polygon of this district.
+Thrissur City (http://www.keralapolice.gov.in/newsite/pdfs/arrested_persons_2014/august/4/arrested_persons_tsrcity.pdf)
+Thrissur Rural (http://www.keralapolice.gov.in/newsite/pdfs/arrested_persons_2014/august/4/arrested_persons_tsrrl.pdf) for both the files we have generated one shape file becouse dont have urban and rural polygon of this district.
+Palakkad (http://www.keralapolice.gov.in/newsite/pdfs/arrested_persons_2014/august/4/arrested_persons_pkd.pdf)
+Malappuram (http://www.keralapolice.gov.in/newsite/pdfs/arrested_persons_2014/august/4/arrested_persons_mpm.pdf)
+Kozhikode City (http://www.keralapolice.gov.in/newsite/pdfs/arrested_persons_2014/august/4/arrested_persons_kkdcity.pdf)
+Wayanad (http://www.keralapolice.gov.in/newsite/pdfs/arrested_persons_2014/august/4/arrested_persons_wynd.pdf)
+Kannur (http://www.keralapolice.gov.in/newsite/pdfs/arrested_persons_2014/august/4/arrested_persons_knr.pdf)
+Kasaragodu (http://www.keralapolice.gov.in/newsite/pdfs/arrested_persons_2014/august/4/arrested_persons_ksd.pdf) Kasaragodu_arrest.shp
+
+Converting a pdf file to excel file:
+In some situation we need to work with the tabular data that is in the form of pdf, it is better to have those tabel in the form of excel sheet. We can convert a pdf content or the tabular content of pdf to an excel sheet using online tool[3].
+
+
 References
 1 http://mashable.com/2011/11/17/free-font-creation-tools/
 2 http://www.myscriptfont.com/
+3 http://online2pdf.com/pdf2excel
