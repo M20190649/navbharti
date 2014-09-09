@@ -70,6 +70,8 @@ Kasaragodu (http://www.keralapolice.gov.in/newsite/pdfs/arrested_persons_2014/au
 Converting a pdf file to excel file:
 In some situation we need to work with the tabular data that is in the form of pdf, it is better to have those tabel in the form of excel sheet. We can convert a pdf content or the tabular content of pdf to an excel sheet using online tool[3].
 
+Splitting pdf files: http://www.splitpdf.com/
+We can split a pdf file as per our requirement, some time we need to seperate all pages to be seperated as seperate file from a pdf file. Some time we need to a particular ranges of pages from a pdf file that can be done using this tool. In some cases we need to merge differed pdf files in a single file. We can give our sourse file from differed sourse location, (i.e., My Computer, DropBox, GoogleDrive etc). After spliting or Merging all files will be downloaded to the defauld Download folder of our system.
 
 References
 1 http://mashable.com/2011/11/17/free-font-creation-tools/
