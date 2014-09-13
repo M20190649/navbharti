@@ -73,6 +73,115 @@ In some situation we need to work with the tabular data that is in the form of p
 Splitting pdf files: http://www.splitpdf.com/
 We can split a pdf file as per our requirement, some time we need to seperate all pages to be seperated as seperate file from a pdf file. Some time we need to a particular ranges of pages from a pdf file that can be done using this tool. In some cases we need to merge differed pdf files in a single file. We can give our sourse file from differed sourse location, (i.e., My Computer, DropBox, GoogleDrive etc). After spliting or Merging all files will be downloaded to the defauld Download folder of our system.
 
+DBSCAN with Kerala Spatial Random Point Data-------------------------------------------------------------
+
+
+I have executed DBSCAN for all the districts of Kerala with their optimized parameters.
+District	TotPts	NCl	MinPts	Eps		Noise	meanCoord
+Ernakulam 	433		5	10		0.07	39
+Idduku		425		7	16		0.07	65
+Kannur		324		3	11		0.077	63
+kasaragod	182		7	6		0.07	18
+Kollam		70		2	10		0.2		3
+Kozhikodu	259		3	7		0.07	31
+Malappuram	215		5	7		0.073	25
+Palakkad	554		3	15		0.0666	46
+Thiruvan	978		8	17		0.054	93
+Wayanad		46		6	3		0.12	2
+
+Kerala		3530	3	50		0.041	98 
+
+-------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------
+What to Do
+Why We have to do
+What are the previouse work
+What are the drawbacks are there in prevoise work
+What are the data to work with
+http://rosettacode.org/wiki/Haversine_formula
+
+How to evaluate the Goodness of DBSCAN cluster result?
+Even if clusters can be judged by human eyes, then why would we need evaluation?
+ 1. to avoid finding patterns in noise
+ 2. to compare clustering algorithms
+ 3. to compare two sets of clusters
+ 4. to compare two clusters
+ 
+ 
+ Crime Stat III - Overview:
+ Crime Stat is a tool to analyse spatial and non spatial crime datasets. provide st at ist ical summar ies and m odels of crime
+incident data.
+
+CrimeS tat III in clu des rout in es for
+Type of distance measurement
+	Direct distance (shortest dist in Euclidean plane.)
+	Indirect distance (horizontal-vertical dist Manhattan' metric)
+	Network distance (path- distance can be used including speed, travel time, or travel cost)
+Spatial distribution
+	Mean center
+	Standard distance deviation
+	Standard deviational ellipse
+	Median center
+	Center of minimum distance
+	Directional mean and variance
+	Convex Hull
+	Moran’s I spatial autocorrelation index
+	Geary’s C spatial autocorrelation index
+	Moran Correlogram
+Distance analysis
+	Nea r est neighbor a nalysis
+	Ripley’s K st at ist ic
+	Assign pr imary point s t o seconda ry point s
+	Within pr imar y file dis tance mat r ix
+	Between pr imar y file and seconda r y file dis tance mat r ix
+	Between pr imar y file and gr id dist ance mat r ix
+	Between seconda r y file and gr id dist ance mat r ix
+Hot spot ana lysi s
+	Mode
+	Fuzzy m ode
+	Nea r est neighbor h ier archical clust er ing
+	Risk -adjus ted nea r est neighbor h ier archical clust er ing
+	Spat ial and tempora l an alysis of crime routine (STAC)
+	K-mean clus t er in g
+	Anselin’s local Moran t est
+Int erp ola ti on
+	Sin gle va r ia ble va r ia ble kernel densit y int erpola t ion
+	Duel va r ia ble va r ia ble kernel densit y int erpola t ion
+Sp a ce-tim e ana lysi s
+	Knox index
+	Mant el index
+	Cor r elat ed walk model
+J ourney-to-Crime an a lysi s
+	Ca libr a t e J ourney-t o-crim e funct ion
+	J ourney-t o-crim e estim a t ion
+	Draw crime tr ips
+Crim e Tr a vel Dem a nd : Tr ip Gen era ti on
+	Skewness dia gn ost ics
+	Calibra te model
+	Make prediction
+	Ba la nce pr edict ed origin s & dest in a t ion s
+Crim e Tr a vel Dem a nd : Tr ip Di st r ibuti on
+	Calcula t e obser ved origin-dest inat ion t r ips
+	Ca libr a t e im pedance funct ion
+	Calibra t e or igin-dest ina t ion model
+	Apply pr edict ed origin-dest ina t ion model
+	Compa r e observed and p redicted or igin-dest inat ion t r ip lengths
+Crime Tra vel Dema nd : Mode Split
+	Calcula te mode sp lit
+Crime Travel D ema nd: Network As si gnment
+	Check for one-way str eet s
+	Create a t r a n sit n etwor k from pr imary file
+	Network ass ignment
+	
+In the distance measurement we can have Direct distance between two points, indirect distnace between two points and networked path distance between two points. In the networked path distance we can have one-way, two-way and weighted with speed, cost, time etc.
+
+mean cent er and st anda rd dis t ance defin e the ar it hmet ic m ean loca t ion and the
+degr ee of disper sion of the dist r ibut ion . The Mcsd rout in e calcu la t es 9 s t at ist ics.
+
+Spa t ial autocor r elat ion indices iden t ify whet her point locations a re spa t ially relat ed,
+eit her clu st er ed or disper sed.
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
 References
 1 http://mashable.com/2011/11/17/free-font-creation-tools/
 2 http://www.myscriptfont.com/
