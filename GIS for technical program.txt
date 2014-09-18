@@ -1,0 +1,148 @@
+[1] Acquiring data over the Internet has become common practice over the past few years. Numerous web sites provide free data layers on the web, and most provide adequate metadata (information about the data) for users to determine whether or not the data are appropriate for their needs. One must be cautious, however, when acquiring free data over the Internet. Many data formats, compression methods, and archive media are used for distributing and accessing GIS data sets.
+
+[2] Demography is the study of human populations with an emphasis on statistical analysis. Data describing a human population is referred to as demographic data. This unit is concerned with the task of locating demographic data, including data describing the socioeconomic characteristics of the population. In all, information about the age, ethnic, gender, income, housing condition, and other socioeconomic variables will be considered. Besides academic researchers such as Geographers, Sociologists, and Political Scientists, professionals that use demographic data include, but are not limited to policy analysts and makers, urban planners, market analysts, and transportation planners. Virtually any organization that utilizes information about people need demographic data.
+
+[3] Transportation data are used in a widening variety of applications, e.g. to �spot� customers in marketing studies, ttrack emergency vehicles and to optimize delivery routes.  Recently it has become possible to monitor traffic volumes and speeds on highways, and to pass advisory messages to dashboard computers in vehicles.  This emerging technology is Intelligent Transportation Systems (ITS), formerly Intelligent Vehicle/Highway Systems (IVHS).
+
+[4] Land records are one of the largest and most complex of the existing geographic data sets. In much of the developed world they are a key part of the tax system. Even in developing countries, where mapping is likely to be inadequate, land records are vital to any planning process involving new investments.
+Since land records have historical significance, they obviously predate the computer era. To meet their legal obligations, and to hold down their costs, all levels of government are looking at ways to better computerize their operations. The maintenance and use by the public of land records is a major cost item for governmental entities.
+The records include a detailed description of the property, structures built upon it, ownership, and many other entities. A map is always part of the record. However, these maps may well be maintained separately from the text records.
+
+[5] Elevation data describes the shape of the Earth's surface and is important in the development of many human and Earth resource models. This information is used in conjunction with other data such as population, vegetation, soils, climate or agricultural information to tell a more complete story of the interaction of people and the environment.
+
+[6] The quick definition of "metadata" is "data about data." Like most circular definitions, this is not very helpful. More usefully, metadata is relatively brief descriptive information about an item, that is a surrogate for that item, like a record in an online catalog in a library. For our purposes, metadata is surrogate information about digital spatial data. If you could directly search data, you might not need metadata; when this is not possible, then metadata is essential, if you want to search quickly through your own data and especially if ever you want other people to be able to find your data. It is essential also to enable users of GIS data easily to find out enough about data in a GIS so that the data may be easily processed and interpreted. In the context of GIS, metadata may exist at several different levels: for a GIS database as a whole; for individual layers; for individual tiles; and for individual points, lines, and polygons.
+
+[7] Primary Validation:
+logical cartographic consistency
+closed polygons
+one label for each polygon
+no duplicate arcs
+no overshoot arcs (dangles)
+similar features use similar symbols
+logical attribute consistency
+values within logical range (look for illegal values)
+dates (e.g. month less than or equal to 12)
+time of day less than 24:00 hours
+nominal data illegally resampled into ratio data
+precipitation values equal to or greater than zero
+linkage of features with attribute fields
+does a polygon map of lakes include depth and salinity data for each lake?
+Secondary Validation:
+
+logical query and statistical tests of the spatial and attribute data (look for unlikely values)
+points placed in distant locations on the map
+elevations with reasonable values
+ground truth or comparison to known standards
+sample ground areas and compare to database
+evaluate spatial accuracy
+evaluate attribute accuracy
+completeness of data ("model type" completeness - relative to user needs)
+in a map of roads, are all the roads important to the us er included?
+sensitivity analysis
+change the data, and see if those changes affect the results for your application.
+
+[8] Spatial datasets are produced and distributed in a variety of formats:  vector, raster, point, line, polygon, image, etc.  Often datasets are designed for certain computer systems (Unix, DOS/Windows, Macintosh) or software programs (GRASS, Idrisi, Arc/Info).  In the likely event that an important dataset is available, but in the wrong format, the GIS analyst must be aware of the issues, methods, and tools for converting spatial data to a format which is compatible with the current GIS project.
+
+[9] A map projection defines the manner in which three-dimensional information about the Earth is transformed to a two-dimensional surface for display and analysis. All spatial data stored in a GIS are associated with a map projection, either implicitly (so-called "unprojected" data stored with raw longitude, latitude coordinates) or explicitly (where the data have been transformed into a known map projection). Map projections are a particularly important feature of spatial data because they introduce error and distortion, since a sphere cannot be transformed to a plane without some stretching and twisting of the sphere's surface.
+
+[10] Registration and Conflation are two related procedures in which two or more geographic datasets are combined, compared, or merged. Registration is the means by which one or more of the datasets are mathematically manipulated to a common coordinate system. Conflation is a less well defined term that is associated with the many issues and problems associated with integrating two or more datasets that cover the same portion of the earth.
+
+[11] Digitizing is the transformation of information from an analog format, such as paper, to a digital format that can be stored and displayed with a computer. Digitizing is performed on a digitizing table or tablet but may also be done on a computer screen ( heads up digitizing). The digitizing table has a fine grid of wires embedded in it that acts as a Cartesian coordinate system. The coordinate may be in plane or geographic coordinates. The procedure involves tracing map features in the form of points, lines or polygons with a puck which relays the coordinate of each sample point to be stored in the computer. The tablet and puck acting together with the computer can locate the puck s position relative to reference information provided by the operator (3- point orientation).
+
+[12] Digitizing refers to the process whereby an analog (or paper) map is converted into a digital format. This data conversion process is also known as geocoding. Digitizing is one of the key ways in which data can be input and stored in a GIS. Apart from the manual technique of digitizing, geocoding can also be performed by scanning the source document.
+
+Points, linear features and areas (or polygons) can all be input by manual digitizing. All features have real world geographic coordinates associated with them as well as topological data that are input as part of the digitizing process. There are two modes or methods by which features are captured - point mode and stream mode. Both have advantages and disadvantages and are better suited to capturing certain features and not others.
+
+[13] On-screen digitizing is an interactive process in which a map is created using previously digitized of scanned information. This method of geocoding is commonly called "heads-up" digitizing because the attention of the user is focused up on the screen, and not on a digitizing tablet. This technique may be used to trace features from a scanned map or image to create new layers or themes. On-screen digitizing may also be employed in an editing session where there is enough information on the screen to accurately add new features without a reference image or map.
+
+The process of on-screen digitizing is similar to conventional digitizing. Rather than using a digitizer and a cursor, the user creates the map layer up on the screen with the mouse and typically with referenced information as a background.
+
+14] When geographic information is stored in a geographic information system (GIS), each geographic feature will have two types of data stored:
+
+Locational information in the form of explicit geographic coordinates.
+Descriptive information in the form of project unique standardized descriptive attribute values.
+For example, an outline of an area feature defined by a series of coordinate pairs will be stored to show the boundary of a quarry. In a separate location values for depth, material quarried and owner's name and address might be stored as attribute information.
+
+A point coordinate would be stored for each building point feature with values for length, width, height, orientation, and primary use separately stored as attribute information.
+
+[15] Scanning is a method for transferring analog (paper) maps into a digital format the computer can read. Scanners use CCDs (charge coupled devices) to read reflectance values from a surface. Specialized electronics then transform the values into digital format. Reflectance is the how the light, consisting of different wave lengths which distinguish different colors, bounces from the object being scanned.
+
+The result of scanning is an electronic image composed of pixels ("picture elements") that can be viewed on a computer monitor. Each pixel has a number assigned that represents the reflectance that was collected by the CCDs. The number is then assigned a color or shade of gray that you will observe on the computer monitor.
+
+[16] Scanning is increasingly an effective means of automating spatial data. Traditionally, all spatial data was digitized manually by using a digitizing tablet or in some cases, keyed in by hand. However, in recent years, developments in hardware and software have made map scanning a viable tool for data automation. There are several different techniques that utilize map scanning as a means of recording spatial data. One method is to scan a map, and then use it as a background image for on-screen digitizing. Another method is to use sophisticated software to convert a scanned raster image into useable GIS data. 
+
+[17] Scanning aerial photography into digital imagery can greatly assist GIS and CAD technicians by saving time and reducing potential errors. Digital imagery is used as a real world back drop for comparison and updates of vector or polygon data. The main purpose of scanning systems is to replace the task of automated tracing (digitizing), to assist in remote sensing applications (land use/land cover characterizations), as well as raster-based modeling. Visualization, through imagery, is an essential form of spatial analysis which allows for more informed decisions to be made. Imagery can greatly assist in a variety of project applications:
+
+[18] CAD (Computer-Aided Drafting) and CAM (Computer-Aided Mapping) are software programs designed to efficiently and very accurately create the graphic entities needed in the production of maps. In this way they can be confused with GIS, but there are several important distinctions between CAD and GIS. While CAD programs cannot perform the analysis expected of GIS, CAD-generated maps and data often provide the basis for GIS data, especially in applications such as parcel and street mapping. CAD can also be used effectively to edit graphic data, often more effectively than GIS programs where the ability to manipulate graphic entities is secondary to analysis.
+
+[19]  A Global Positioning System (GPS) is a set of hardware and software designed to determine accurate locations on the earth using signals received from selected satellites. Location data and associated attribute data can be transferred to mapping and Geographical Information Systems (GIS). GPS will collect individual points, lines and areas in any combination necessary for a mapping or GIS project. More importantly, with GPS you can create complex data dictionaries to accurately and efficiently collect attribute data. This makes GPS is a very effective tool for simultaneously collecting spatial and attribute data for use with GIS. GPS is also an effective tool for collecting control points for use in registering base maps when known points are not available.
+
+[20] Coordinate Geometry (COGO) is a method of inputting surveying or engineering data into GIS, CAD or mapping softwares. These data may be collected in the field using conventional surveying techniques and instrumentation, or may be derived from existing maps, plats, engineering plans, drawings or records.
+
+Data collected in the field consist typically of coordinates of points, distances and bearings between points, and point identifiers (with possibly additional descriptions for these points). The data are observed and recorded through standard field surveying procedures, such as a traverse or a series of layout measurements. The data may be non-digital (recorded in notebooks), or digital (recorded on some sort of total station or data logging device) In the latter case the data will be transferred to office computers through specialized software.
+
+[21] We may add polygons to an existing polygons coverage. There are two types of polygons one may add: adding non-adjacent polygons (f.i., city blocks) and adding adjacent polygons (f.i., parcels)
+
+[22] Managing digital GIS data libraries can facilitate efficient and reliable access to validated, standardized, and documented GIS data. Responsibility for managing enterprise GIS library databases often rests with specifically assigned individuals who possess full understandings of the processes used to develop and prepare the data for acceptance into the library. However, individual users may employ this skill to organize their project data and share it with other users.
+
+[23] Buffering is an important pre-analysis technique which is used to constrain space around individual land features. It combines spatial data query techniques and cartographic modelling. It is generally used for defining all of the spaces within a certain distance of a type of feature, or a subset of features that are selected according to an attribute value. Buffer distances must be set by the user.
+
+[24] Overlay operations are powerful spatial analysis tools used to combine layers of data. They are generally used to determine which features in one coverage lay within polygon features of another coverage. Different operators allow the user to add (or subtract) all or part of a coverage's features to (or from) another coverage.
+
+[25] People use GIS to answer questions about the world. Typically, these answers involve different types of generalizations. These generalizations may relate either to questions about the physical or human reality around us. For example:
+
+What is the average temperature of Botswana in June? Of Kuala Lumpur in August?
+What is the average distance that people are willing to drive to the grocery store?
+How much does the median household income vary from county to county in the USA?
+GIS technicians are often called on to answer these sorts of questions. Answers to these types of require an understanding of basic statistics. This module describes the fundamental concepts of this statistics, in a light-hearted manner that attempts to express the key ideas of this critical intellectual building block without being overly technical or boring.
+
+[26] It is common to use a GIS to locate areas which satisfy a set of criteria. For example, we might be looking for all properties which are zoned for commercial development and which are located within 100 meters of a sewer line. A typical way to go about this is to prepare a data layer for each criterion in which only areas which satisfy the criterion are represented. In this case, we prepare one data layer which shows all commercially zoned properties and a second data layer showing only areas within 100 meters of a sewer line. By using an OVERLAY operation (see Units 34 and 35) between the two data layers we can determine which parts of our study area, if any, satisfy both criteria. Often there are many criteria to be satisfied and a series of such analytical steps is required.
+
+[27][28] Map Algebra is one kind of derivative mapping; new data layers are derived from existing data layers through combination and transformation. A GIS typically provides tools for combining and/or transforming map layers mathematically. We might find that this is necessary because an analysis we are conducting requires that data values for one or more data layers be numerically processed and/or combined according to some formula or equation. For example, if we have an equation that predicts temperature as a function of altitude, we may wish to derive a temperature map from a digital elevation model. Or, as another example, consider the possibility of creating a soil erosion potential map given data layers of soil erodability, slope, and rainfall intensity and an equation relating soil erosion to these three factors. Clearly we need the ability to modify data values in our map layers by various mathematical operations and transformations and to combine factors or data layers mathematically to produce a final result.
+
+[29] Surface models characterize attributes which are spatially continuous. Typically, exactly one attribute value is available for any location in space. One common surface variable is elevation. Other surface variables include mineral concentration, or human population density. In each of these examples, the height of the surface at any one location is the value of the variable at that location. This is a perspective view of a digital elevation model (DEM). This is a population density map of India.
+
+[30] Address matching allows the user to convert postal addresses and/or zip codes to geographic coordinates, create a new data layer containing these points, and display the information on a map. Three components are necessary to complete the address matching process: a geographic base file (GBF), a table containing address information, and a computer software package that performs the conversion. Address geocoding functionality is available in most geographic information system (GIS) software packages. The resultant new point data layer can subsequently be used to analyze spatial patterns.
+
+[31] Effective interpretation of the results of your analysis -- both by you and by others -- depends to a large extent on the design of the on-screen display. Visualizing information in the form of a map, chart, image, or other form of graphic takes advantage of humans' most perceptive sense -- vision -- to uncover patterns, associations, and processes that would likely be missed if the data were displayed in tabular or some other non-graphic form. However, as Buttenfield (1996) points out, it's this very ability that might lead a viewer of a graphic display to be as easily misled as informed by the contents of the graphic. A slight alteration of the color scheme or classification method of a map, for example, might produce two different graphics that appear to tell two very different stories -- even though they represent the exact same data. Thus it is crucial that GIS users be aware of the power of a graphic image to communicate ideas and of the considerations necessary to design an effective on-screen visual display. This unit will outline some guidelines, developed by cartographers over many decades, which will assist you in the logical design of easily understood GIS display.
+
+[32] According to the old saw, a picture is worth a thousand words. That certainly holds true for GIS projects, since in almost all cases the results must be communicated to an audience. That audience may be live, or at the receiving end of a paper document, or, increasingly, downloading a World Wide Web page. Each of these environments requires a graphical presentation, but the technical specifics for each vary with each medium.
+
+[33] In this unit the student will learn how to assess needs requirements and evaluate options in order to implement and maintain a GIS laboratory and how to plan and manage GIS project work. The student will also learn where to find information on U.S. Government contracts that are available for bid.
+
+
+References:
+1. http://www.ncgia.ucsb.edu/cctp/units/unit01/01_f.html
+2. http://www.ncgia.ucsb.edu/education/curricula/cctp/units/unit02/02_f.html
+3. http://www.ncgia.ucsb.edu/education/curricula/cctp/units/unit03/03_f.html
+4. http://www.ncgia.ucsb.edu/cctp/units/unit04/04_f.html
+5. http://www.ncgia.ucsb.edu/cctp/units/unit06/06_f.html
+6. http://www.ncgia.ucsb.edu/cctp/units/unit07/07_f.html
+7. http://www.ncgia.ucsb.edu/cctp/units/unit08/08_f.html
+8. http://www.ncgia.ucsb.edu/cctp/units/unit09/09_f.html
+9. http://www.ncgia.ucsb.edu/cctp/units/unit10/10_f.html
+10. http://www.ncgia.ucsb.edu/cctp/units/unit11/11_f.html
+11. http://www.ncgia.ucsb.edu/cctp/units/unit12/12_f.html
+12. http://www.ncgia.ucsb.edu/cctp/units/unit13/13_f.html
+13. http://www.ncgia.ucsb.edu/cctp/units/unit14/14_f.html
+14. http://www.ncgia.ucsb.edu/cctp/units/unit15/15_f.html
+15. http://www.ncgia.ucsb.edu/cctp/units/unit16/16_f.html
+16. http://www.ncgia.ucsb.edu/cctp/units/unit17/17_f.html
+17. http://www.ncgia.ucsb.edu/cctp/units/unit18/18_f.html
+18. http://www.ncgia.ucsb.edu/cctp/units/unit23/23_f.html
+19. http://www.ncgia.ucsb.edu/cctp/units/unit24/24_f.html
+20. http://www.ncgia.ucsb.edu/cctp/units/unit25/25_f.html
+21. http://www.ncgia.ucsb.edu/cctp/units/unit28/28_f.html
+22. http://www.ncgia.ucsb.edu/cctp/units/unit32/32_f.html
+23. http://www.ncgia.ucsb.edu/cctp/units/unit33/33_f.html
+24. http://www.ncgia.ucsb.edu/cctp/units/unit34/34_f.html
+25. http://www.ncgia.ucsb.edu/cctp/units/unit39/39_f.html
+26. http://www.ncgia.ucsb.edu/cctp/units/unit41/41_f.html
+27. http://www.ncgia.ucsb.edu/cctp/units/unit42/42_f.html
+28. http://www.ncgia.ucsb.edu/cctp/units/unit42/algebra.html
+29. http://www.ncgia.ucsb.edu/cctp/units/unit43/43_f.html
+30. http://www.ncgia.ucsb.edu/cctp/units/unit46/46_f.html
+31. http://www.ncgia.ucsb.edu/cctp/units/unit47/47_f.html
+32. http://www.ncgia.ucsb.edu/cctp/units/unit51/51_f.html
+33. http://www.ncgia.ucsb.edu/cctp/units/unit52/52_f.html
+

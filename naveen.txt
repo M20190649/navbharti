@@ -181,8 +181,25 @@ degr ee of disper sion of the dist r ibut ion . The Mcsd rout in e calcu la t es
 Spa t ial autocor r elat ion indices iden t ify whet her point locations a re spa t ially relat ed,
 eit her clu st er ed or disper sed.
 -------------------------------------------------------------------------------------------------------------------------------------------------
+The mode calculates the frequency of incidents for each unique location, defined by an X and Y coordinate. It will output a list of all unique locations and their X and Y coordinates and the number of incidents occurring at each, ranked in decreasing order from most frequent to least frequent . It will also list their rank order from 1 to the last unique location.
+
+The fuzzy mode calculates the frequency of incidents for each unique location within a user-specified distance. The user must specify the search radius and the units for the radius (miles, nautical miles, feet, kilometers, meters). The routine will identify each unique location, defined by its X and Y coordinates, and will calculate the number of incidents that fall within the search radius. It will output a list of all unique locations and their X and Y coordinates and the number of incidents occurring at each within the search radius, ranked in decreasing order from most frequent to least frequent . It will also list their rank order from 1 to the last unique location.
+
+The nearest neighbor hierarchical spatial clustering routine is a constant-distance clustering routine that groups points together on the basis of spatial proximity. The user defines a threshold distance and the minimum number of points that are required for each cluster, and an output size for displaying the clusters with ellipses. The routine identifies first-order clusters, representing groups of points that are closer together than the threshold distance and in which there is at least the minimum number of points specified by the user. Clustering is hierarchical in that the first-order clusters are treated as separate points to be clustered into second-order clusters, and the second-order clusters are treated as separate points to be clustered into third-order clusters, and so on. Higher-order clusters will be identified only if the distance between their centers are closer than the new threshold distance.
+First, the search distance is chosen by the random nearest neighbor distance. The default value is 0.1 (i.e., fewer than 10% of the pair s could be expected to be as close or closer by chance.) Pairs of points that are closer together than the threshold distance are grouped together whereas pairs of points that are greater than the threshold distance are ignored. The smaller the significance level that is selected, the smaller the threshold distance and, usually, the fewer pairs will be selected. On the other hand, choosing a higher significance level, the larger the threshold distance and, usually, the more pairs will be selected. However, the higher the significance level chosen, the greater the likelihood that clusters could be chance groupings. 
+Second, a fixed distance can be selected. The default is 1 mile. In this case, the search radius uses the fixed distance.
+
+The risk-adjusted nearest neighbor hierarchical spatial clustering routine groups points together on the basis of spatial pr oximity, but the grouping is adjusted according to the distribution of a baseline variable. The routine requires both a primary file (e.g., robberies) and a secondary file (e.g., population). For the secondary variable, if an intensity or weight variable is to be used, it should be specified.
+A density estimate of the secondary variable must be calculated to adjust the threshold distance of the primary var iable.
+
+[4] this website is having facilities to get data from osm to other format.
+
+[5] This is the google code for facebook data extraction tool on java web application
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 References
 1 http://mashable.com/2011/11/17/free-font-creation-tools/
 2 http://www.myscriptfont.com/
 3 http://online2pdf.com/pdf2excel
+4. http://overpass-turbo.eu/
+5. http://code.google.com/p/data-extraction-facebook/source/browse/#svn%2Ftrunk%2Fcom%2Fseis734%2Flogin%253Fstate%253Dclosed
