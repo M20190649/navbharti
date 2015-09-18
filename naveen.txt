@@ -196,10 +196,712 @@ A density estimate of the secondary variable must be calculated to adjust the th
 
 [5] This is the google code for facebook data extraction tool on java web application
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+[6] Algomation.com, Animated Algorithms in JavaScript
+http://www.algomation.com 
+After some very positive comments and a welcome post on HN my algorithm platform Algomation.com I'm looking for feedback on the utility of this platform.
+Its very good for the learner about the algorithm, that demonstrate the algorithm. It has variouse algorithms with the animated version.
+----------------------------------------------------------Spatial phrouting process-------------------------------------------------------------------
 
+A beginner guide to pgrouting:
+It is assumed that--
+Postgres with PostGIS and pgAdmin
+QGIS with PostGIS Manager and RT Sql Layer plugins
+
+Creating a routable road network;
+We should have a shape file of the network.
+loaded into to the PostGIS
+We need to create start and end point geometry.
+Createing a view: road_ext with all attribute plus st_startpoint and st_endpoint.
+
+CREATE OR REPLACE VIEW road_ext AS
+   SELECT *, st_startpoint(st_lineMerge(geom)), st_endpoint(st_lineMerge(geom))
+   FROM street;
+
+Then we create a table: node from the created view: road_ext
+   
+CREATE TABLE node AS
+   SELECT row_number() OVER (ORDER BY foo.p)::integer AS id, 
+          foo.p AS geom
+   FROM (         
+      SELECT DISTINCT road_ext.ST_startpoint AS p FROM road_ext
+      UNION
+      SELECT DISTINCT road_ext.ST_endpoint AS p FROM road_ext
+   ) foo
+   GROUP BY foo.p;
+   
+Then we create a table: network
+   
+   CREATE TABLE network AS
+   SELECT a.*, b.id as start_id, c.id as end_id
+   FROM road_ext AS a
+      JOIN node AS b ON a.ST_startpoint = b.geom
+      JOIN node AS c ON a.ST_endpoint = c.geom;
+it will take some time (better to create index before calculating shortest path).
+	  
+SELECT * FROM shortest_path('
+   SELECT gid AS id, 
+          start_id::int4 AS source, 
+          end_id::int4 AS target, 
+          shape_leng::float8 AS cost
+   FROM network',
+1,
+5110,
+false,
+false);	  
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Tesseract is an OCR software which can be used to convert image file to charater file given training data of the particular language.
+jTessBoxEditor : This is a important tool for creating training data for any laguage and editing character size and all.
+http://vietocr.sourceforge.net/training.html
+
+TML - Text Mining Library for LSA (Latent Semantic Analysis)
+http://tml-java.sourceforge.net/
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+--Total Table is 10--
+--1. Address--
+--2. Airport--
+--3. CityCouncil--
+--4. Crime_2009--
+--5. DNRStream--
+--6. Hydro--
+--7. Municipal--
+--8. Neighborhood--
+--9. Railroad--
+--10. Street--
+
+-- 1. Table: public."Address"
+
+-- DROP TABLE public."Address";
+
+CREATE TABLE public."Address"
+(
+  gid integer NOT NULL DEFAULT nextval('"Address_gid_seq"'::regclass),
+  "AddressID" character varying(20),
+  "AddressLab" character varying(50),
+  "Zipcode" integer,
+  "AddressAng" double precision,
+  "AddressTyp" integer,
+  "FeatureTyp" integer,
+  the_geom geometry(Point),
+  CONSTRAINT "Address_pkey" PRIMARY KEY (gid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public."Address"
+  OWNER TO postgres;
+
+  
+-- 2. Table: public."Airport"
+
+-- DROP TABLE public."Airport";
+
+CREATE TABLE public."Airport"
+(
+  gid integer NOT NULL DEFAULT nextval('"Airport_gid_seq"'::regclass),
+  "Name" character varying(40),
+  "Type" integer,
+  the_geom geometry(Polygon),
+  CONSTRAINT "Airport_pkey" PRIMARY KEY (gid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public."Airport"
+  OWNER TO postgres;
+  
+  
+-- 3. Table: public."CityCouncil"
+
+-- DROP TABLE public."CityCouncil";
+
+CREATE TABLE public."CityCouncil"
+(
+  gid integer NOT NULL DEFAULT nextval('"CityCouncil_gid_seq"'::regclass),
+  "District" integer,
+  "Representa" character varying(254),
+  the_geom geometry(Polygon),
+  CONSTRAINT "CityCouncil_pkey" PRIMARY KEY (gid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public."CityCouncil"
+  OWNER TO postgres;
+
+  
+-- 4. Table: public."Crime_2009"
+
+-- DROP TABLE public."Crime_2009";
+
+CREATE TABLE public."Crime_2009"
+(
+  gid integer NOT NULL DEFAULT nextval('"Crime_2009_gid_seq"'::regclass),
+  "OFFENSE" character varying(30),
+  "OFFGEN" character varying(22),
+  "BEGINDATE" date,
+  "ENDDATE" date,
+  "LOCATION" character varying(60),
+  "crimeId" integer,
+  x double precision,
+  y double precision,
+  the_geom geometry(Point),
+  cgid integer,
+  sgid integer,
+  CONSTRAINT "Crime_2009_pkey" PRIMARY KEY (gid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public."Crime_2009"
+  OWNER TO postgres;
+
+-- Index: public.crime_2009_gix1
+
+-- DROP INDEX public.crime_2009_gix1;
+
+CREATE INDEX crime_2009_gix1
+  ON public."Crime_2009"
+  USING gist
+  (the_geom);
+
+-- 5. Table: public."DNRStream"
+
+-- DROP TABLE public."DNRStream";
+
+CREATE TABLE public."DNRStream"
+(
+  gid integer NOT NULL DEFAULT nextval('"DNRStream_gid_seq"'::regclass),
+  "CODE" character varying(1),
+  "DESCRIPTIO" character varying(12),
+  "BUFFER" integer,
+  "COSBuffer" integer,
+  the_geom geometry(LineString),
+  CONSTRAINT "DNRStream_pkey" PRIMARY KEY (gid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public."DNRStream"
+  OWNER TO postgres;
+
+  
+-- 6. Table: public."Hydro"
+
+-- DROP TABLE public."Hydro";
+
+CREATE TABLE public."Hydro"
+(
+  gid integer NOT NULL DEFAULT nextval('"Hydro_gid_seq"'::regclass),
+  "HydroType" integer,
+  "Name" character varying(50),
+  the_geom geometry(Polygon),
+  CONSTRAINT "Hydro_pkey" PRIMARY KEY (gid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public."Hydro"
+  OWNER TO postgres;
+
+  
+-- 7. Table: public."Municipal"
+
+-- DROP TABLE public."Municipal";
+
+CREATE TABLE public."Municipal"
+(
+  gid integer NOT NULL DEFAULT nextval('"Municipal_gid_seq"'::regclass),
+  "MUNINAME" character varying(50),
+  the_geom geometry(Polygon),
+  CONSTRAINT "Municipal_pkey" PRIMARY KEY (gid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public."Municipal"
+  OWNER TO postgres;
+
+  
+-- 8. Table: public."Neighborhood"
+
+-- DROP TABLE public."Neighborhood";
+
+CREATE TABLE public."Neighborhood"
+(
+  gid integer NOT NULL DEFAULT nextval('"Neighborhood_gid_seq"'::regclass),
+  "Name" character varying(40),
+  the_geom geometry(Polygon),
+  CONSTRAINT "Neighborhood_pkey" PRIMARY KEY (gid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public."Neighborhood"
+  OWNER TO postgres;
+
+  
+-- 9. Table: public."Railroad"
+
+-- DROP TABLE public."Railroad";
+
+CREATE TABLE public."Railroad"
+(
+  gid integer NOT NULL DEFAULT nextval('"Railroad_gid_seq"'::regclass),
+  "TrackType" character varying(20),
+  "Status" character varying(12),
+  "Name" character varying(50),
+  the_geom geometry(LineString),
+  CONSTRAINT "Railroad_pkey" PRIMARY KEY (gid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public."Railroad"
+  OWNER TO postgres;
+
+  
+--10. Table: public."Street"
+
+-- DROP TABLE public."Street";
+
+CREATE TABLE public."Street"
+(
+  gid integer NOT NULL DEFAULT nextval('"Street_gid_seq"'::regclass),
+  "StreetID" character varying(20),
+  "LeftFrom" integer,
+  "LeftTo" integer,
+  "RightFrom" integer,
+  "RightTo" integer,
+  "StreetDire" character varying(2),
+  "StreetName" character varying(30),
+  "StreetType" character varying(4),
+  "LeftCity" character varying(25),
+  "RightCity" character varying(25),
+  "LeftZip" integer,
+  "RightZip" integer,
+  "RoadClass" character varying(1),
+  "LeftFireAr" character varying(25),
+  "RightFireA" character varying(25),
+  the_geom geometry(LineString),
+  CONSTRAINT "Street_pkey" PRIMARY KEY (gid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public."Street"
+  OWNER TO postgres;
+
+-- Index: public.street_gix1
+
+-- DROP INDEX public.street_gix1;
+
+CREATE INDEX street_gix1
+  ON public."Street"
+  USING gist
+  (the_geom);
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+select "india_roads".the_geom from public."india_roads";
+
+
+select "india_roads".gid from public."india_roads" where "india_roads"."state" = 'Kerala';
+
+select * from public."india_roads" where "india_roads".gid = 843620;
+
+DELETE FROM public."india_roads"
+WHERE "india_roads"."state" = 'Kerala';
+commit;
+
+select * from public."Street";
+
+select "Crime_2009".gid as Crime_gid, "Street".gid as Street_gid from public."Crime_2009", public."Street" where ST_overlaps("Crime_2009".the_geom, "Street".the_geom) = TRUE;
+
+--Select min distance from a crime to the street ---
+select min(ST_distance("Crime_2009".the_geom, "Street".the_geom)) from public."Crime_2009", public."Street" where "Street".gid = 1;
+
+--select all the crimes within the distance of 0.5 fro the street gid = 1--
+select "Crime_2009".gid from public."Crime_2009", public."Street" where "Street".gid = 1 and ST_distance("Crime_2009".the_geom, "Street".the_geom) < 0.4;
+
+--select all the street wise crimes which are close to linestring by distance of 0.4--
+select "Crime_2009".gid, "Street".gid from public."Crime_2009", public."Street" where ST_distance("Crime_2009".the_geom, "Street".the_geom) < 0.4;
+
+select ST_distance from public."Crime_2009" where "Crime_2009".gid = 3503;
+
+select distinct a.gid from public."Crime_2009" as a, public."Crime_2009" as b where a.the_geom = b.the_geom and a.gid != b.gid;
+--calculates distance in degree between point and linestring---
+select st_distance("india_points".the_geom, "india_roads".the_geom) from  public."india_points", public."india_roads" where "india_roads".gid = 1 and "india_points".gid = 1;
+
+--calculates distance in meters between points and linestring--
+SELECT ST_Distance(
+			ST_Transform(ST_GeomFromText(ST_AsText("india_points".the_geom) ,4326),26986),
+			ST_Transform(ST_GeomFromText(ST_AsText("india_roads".the_geom), 4326),26986)
+		) from public."india_points", public."india_roads" where "india_roads".gid = 1 and "india_points".gid = 1;
+
+select * from public."BPD_Part_1_Victim_Based_Crime_Data";
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+website link: http://www.spokanecity.org/services/gis/data/
+
+The tables below list GIS data sets available for download. All data are in the State Plane Coordinate System, Zone: Washington North (5601), FIPS Zone: 4601, Datum: NAD83, Units: Feet. Metadata in XML format is included with all files.
+
+Before using any of the datasets, please read the liability disclaimer (readme.htm) included in the zip archives.
+
+Report any problems to giswebmaster@spokanecity.org.
+
+The Data was last updated on: 1/9/2014.
+
+Aerial Photo Layers
+
+Layer	Description	Format	Update Status	File Size	Download
+Spokane 2007 Ortho	6" color ortho-imagery covering the Spokane, WA metro area.	MrSID	June 2007	3GB	SpokaneOrtho2007.zip
+Basemap Layers
+
+Layer	Description	Format	Update Status	File Size	Download
+2ft Elevation Contours	2 ft topographic contour data digitized from 6" aerial photography.	Shapefile	2007	144MB	Contour2007.zip
+Addresses	Primary and secondary address points.	Shapefile	Continual	4MB	Address.zip
+Airports	Airports, airfields, runways and landing strips.	Shapefile	Current	37KB	Airport.zip
+Buildings	Building roofprints digitized from 6" aerial photography.	Shapefile	Continual	17MB	Building.zip
+City Parks	City of Spokane Parks	Shapefile	Current	307KB	Park.zip
+Railroads	Railroad Centerlines	Shapefile	Current	313KB	Railroad.zip
+Streams	DNR surface water features including rivers and streams	Shapefile	2007	4MB	DNRStream.zip
+Streets	Centerline of driven way.	Shapefile	Continual	5MB	Street.zip
+USGS Contours	USGS 7.5 minute contours for Spokane County	Shapefile	Unknown	63MB	USGSContour.zip
+Water Bodies	Surface water features including rivers, streams, ponds and lakes	Shapefile	2008	1002KB	Hydro.zip
+Boundary Layers
+
+Layer	Description	Format	Update Status	File Size	Download
+City Council Districts	City Council District Boundaries	Shapefile	Current	144KB	CityCouncil.zip
+City Limits	City Limits, Municipal Limits, and Corporate Boundaries	Shapefile	Current	298KB	Municipal.zip
+Empowerment Zone	Purpose is to stimulate economic development throughout indicated areas.	Shapefile	Current	13KB	CEZ.zip
+Fire Districts	Fire district boundaries.	Shapefile	Current	334KB	FireDistrict.zip
+Neighborhoods	City of Spokane Neighborhood Council Districts	Shapefile	Current	226KB	Neighborhood.zip
+County Assessor Layers
+
+Layer	Description	Format	Update Status	File Size	Download
+Parcels	Spokane County Assessor Tax Parcel Information.	Shapefile	Continual	74MB	Parcel.zip
+Crime Layers
+
+Layer	Description	Format	Update Status	File Size	Download
+2008 Crimes	2008 crime locations.	Shapefile	2008	699KB	Crime2008.zip
+2009 Crimes	2009 crime locations.	Shapefile	2009	690KB	Crime2009.zip
+2010 Crimes	2010 crime locations	Shapefile	2010	644KB	Crime2010.zip
+2011 Crimes	2011 crime locations.	Shapefile	2011	704KB	Crime2011.zip
+2012 Crimes	2012 crime locations.	Shapefile	2012	793KB	Crime2012.zip
+Environment Layers
+
+Layer	Description	Format	Update Status	File Size	Download
+Aquifer	Spokane-Rathdrum aquifer boundaries.	Shapefile	Current	35KB	Aquifer.zip
+FEMA Flood Zones	100 year and 500 year FEMA flood zones.	Shapefile	Current	2MB	FemaFlood.zip
+Planning Layers
+
+Layer	Description	Format	Update Status	File Size	Download
+Final Plats	Final plat outlines	Shapefile	Continual	256KB	FinalPlat.zip
+Land Use Plan	Land use plan	Shapefile	Current	905KB	Landuse.zip
+Preliminary Plats	Preliminary plat outlines	Shapefile	Continual	119KB	PrePlat.zip
+Urban Growth Area	Urban growth area boundaries.	Shapefile	Current	594KB	UGA.zip
+Zoning	Zoning boundaries	Shapefile	Current	722KB	Zoning.zip
+----------------------------------------------------------------------------------------------------------------------------------------
+UPDATE table_name
+SET column1=value1,column2=value2,...
+WHERE some_column=some_value;
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------st_within()-------------------------------------------------------
+--do make index of the interesting tabel to fasten the query--
+--add one column to the interesting table ---
+ALTER TABLE public."india_railways"
+ADD "state" character varying(50)
+--kerala region railways line selectin with st_within function--
+update public."india_railways" set state = 'Kerala' 
+where "india_railways".gid in 
+	(select r.gid from public."india_railways" r, public."Kerala" k 
+		where st_within(r.the_geom,k.the_geom) = True)
+--Kerala_railways --
+CREATE TABLE public.Kerala_railways
+(
+  gid integer NOT NULL DEFAULT nextval('india_railways_gid_seq'::regclass),
+  osm_id character varying(11),
+  name character varying(48),
+  type character varying(16),
+  the_geom geometry(LineString),
+  state character varying(50),
+  CONSTRAINT Kerala_railways_pkey PRIMARY KEY (gid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.Kerala_railways
+  OWNER TO postgres;
+
+-- Index: public.kerala_railways_gix1
+
+-- DROP INDEX public.indian_railways_gix1;
+
+CREATE INDEX Kerala_railways_gix1
+  ON public.Kerala_railways
+  USING gist
+  (the_geom);
+
+--kerala rows insertion from india_railways--
+insert into "kerala_railways"(osm_id, name, type, the_geom, state) 
+select r.osm_id, r.name, r.type, r.the_geom, r.state from public."india_railways" r where state = 'Kerala'
+
+--------------------------------------------------st_within() from kerala roads--------------------------------------------------
+select * from india_roads where state = 'Kerala'
+--do make index of the interesting tabel to fasten the query--
+--add one column to the interesting table ---
+ALTER TABLE public."india_roads"
+ADD "state" character varying(50)
+--kerala region railways line selectin with st_within function--
+update public."india_roads" set state = 'Kerala' 
+where "india_roads".gid in 
+	(select r.gid from public."india_roads" r, public."Kerala" k 
+		where st_within(r.the_geom,k.the_geom) = True)
+--Kerala_railways --
+CREATE TABLE public.Kerala_roads
+(
+  gid integer NOT NULL DEFAULT nextval('india_railways_gid_seq'::regclass),
+  osm_id character varying(11),
+  name character varying(48),
+  type character varying(16),
+  the_geom geometry(LineString),
+  state character varying(50),
+  CONSTRAINT Kerala_roads_pkey PRIMARY KEY (gid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.Kerala_roads
+  OWNER TO postgres;
+
+-- Index: public.kerala_railways_gix1
+
+-- DROP INDEX public.indian_railways_gix1;
+
+CREATE INDEX Kerala_roads_gix
+  ON public.Kerala_roads
+  USING gist
+  (the_geom);
+
+--kerala rows insertion from india_railways--
+insert into "kerala_roads"(osm_id, name, type, the_geom, state) 
+select r.osm_id, r.name, r.type, r.the_geom, r.state from public."india_roads" r where state = 'Kerala'
+
+select * from kerala_roads
+
+--------------------------------------------------st_within() from kerala places--------------------------------------------------
+select * from india_places where state = 'Kerala'
+--do make index of the interesting tabel to fasten the query--
+--add one column to the interesting table ---
+ALTER TABLE public."india_places"
+ADD "state" character varying(50)
+--kerala region railways line selectin with st_within function--
+update public."india_places" set state = 'Kerala' 
+where "india_places".gid in 
+	(select p.gid from public."india_places" p, public."Kerala" k 
+		where st_within(p.the_geom,k.the_geom) = True)
+--Kerala_railways --
+CREATE TABLE public.Kerala_places
+(
+  gid integer NOT NULL DEFAULT nextval('india_places_gid_seq'::regclass),
+  osm_id character varying(11),
+  name character varying(48),
+  type character varying(16),
+  population integer,
+  the_geom geometry(Point),
+  state character varying(50),
+  CONSTRAINT Kerala_places_pkey PRIMARY KEY (gid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.Kerala_places
+  OWNER TO postgres;
+
+-- Index: public.india_places_gix
+
+-- DROP INDEX public.india_places_gix;
+
+CREATE INDEX Kerala_places_gix
+  ON public.Kerala_places
+  USING gist
+  (the_geom);
+  
+--kerala rows insertion from india_railways--
+insert into "kerala_places"(osm_id, name, type, population, the_geom, state) 
+select p.osm_id, p.name, p.type, p.population, p.the_geom, p.state from public."india_places" p where state = 'Kerala'
+
+select * from kerala_places
+
+--------------------------------------------------st_within() from kerala buildings--------------------------------------------------
+select * from india_buildings where state = 'Kerala'
+--do make index of the interesting tabel to fasten the query--
+--add one column to the interesting table ---
+ALTER TABLE public."india_buildings"
+ADD "state" character varying(50)
+--kerala region railways line selectin with st_within function--
+update public."india_buildings" set state = 'Kerala' 
+where "india_buildings".id in 
+	(select b.id from public."india_buildings" b, public."Kerala" k 
+		where st_within(b.geom,k.the_geom) = True)
+--Kerala_railways --
+CREATE TABLE public.Kerala_places
+(
+  gid integer NOT NULL DEFAULT nextval('india_places_gid_seq'::regclass),
+  osm_id character varying(11),
+  name character varying(48),
+  type character varying(16),
+  population integer,
+  the_geom geometry(Point),
+  state character varying(50),
+  CONSTRAINT Kerala_places_pkey PRIMARY KEY (gid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.Kerala_places
+  OWNER TO postgres;
+
+-- Index: public.india_places_gix
+
+-- DROP INDEX public.india_places_gix;
+
+CREATE INDEX Kerala_places_gix
+  ON public.Kerala_places
+  USING gist
+  (the_geom);
+  
+--kerala rows insertion from india_railways--
+insert into "kerala_places"(osm_id, name, type, population, the_geom, state) 
+select p.osm_id, p.name, p.type, p.population, p.the_geom, p.state from public."india_places" p where state = 'Kerala'
+
+select * from kerala_places
+--------------------------------------------------st_within() from kerala landuse--------------------------------------------------
+CREATE INDEX india_landuse_gix
+  ON public.india_landuse
+  USING gist
+  (the_geom);
+
+select * from india_landuse where state = 'Kerala'
+--do make index of the interesting tabel to fasten the query--
+--add one column to the interesting table ---
+ALTER TABLE public."india_landuse"
+ADD "state" character varying(50)
+--kerala region railways line selectin with st_within function--
+update public."india_landuse" set state = 'Kerala' 
+where "india_landuse".gid in 
+	(select b.gid from public."india_landuse" b, public."Kerala" k 
+		where st_within(b.the_geom,k.the_geom) = True)
+--Kerala_railways --
+CREATE TABLE public.Kerala_landuse
+(
+  gid integer NOT NULL DEFAULT nextval('india_landuse_gid_seq'::regclass),
+  osm_id character varying(11),
+  name character varying(48),
+  type character varying(16),
+  the_geom geometry(Polygon),
+  state character varying(50),
+  CONSTRAINT Kerala_landuse_pkey PRIMARY KEY (gid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.Kerala_landuse
+  OWNER TO postgres;
+
+
+-- Index: public.india_places_gix
+
+-- DROP INDEX public.india_places_gix;
+
+CREATE INDEX Kerala_landuse_gix
+  ON public.Kerala_landuse
+  USING gist
+  (the_geom);
+  
+--kerala rows insertion from india_railways--
+insert into "kerala_landuse"(osm_id, name, type, the_geom, state) 
+select p.osm_id, p.name, p.type, p.the_geom, p.state from public."india_landuse" p where state = 'Kerala'
+
+select * from kerala_landuse
+
+--------------------------------------------------st_within() from kerala waterways--------------------------------------------------
+CREATE INDEX india_waterways_gix
+  ON public.india_waterways
+  USING gist
+  (the_geom);
+
+select * from india_waterways where state = 'Kerala'
+--do make index of the interesting tabel to fasten the query--
+--add one column to the interesting table ---
+ALTER TABLE public."india_waterways"
+ADD "state" character varying(50)
+--kerala region railways line selectin with st_within function--
+update public."india_waterways" set state = 'Kerala' 
+where "india_waterways".gid in 
+	(select b.gid from public."india_waterways" b, public."Kerala" k 
+		where st_within(b.the_geom,k.the_geom) = True)
+--Kerala_railways --
+CREATE TABLE public.Kerala_waterways
+(
+  gid integer NOT NULL DEFAULT nextval('india_waterways_gid_seq'::regclass),
+  osm_id character varying(11),
+  name character varying(48),
+  type character varying(16),
+  width integer,
+  the_geom geometry(Polygon),
+  state character varying(50),
+  CONSTRAINT Kerala_waterways_pkey PRIMARY KEY (gid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.Kerala_waterways
+  OWNER TO postgres;
+
+
+-- Index: public.india_places_gix
+
+-- DROP INDEX public.india_places_gix;
+
+CREATE INDEX Kerala_waterways_gix
+  ON public.Kerala_waterways
+  USING gist
+  (the_geom);
+  
+--kerala rows insertion from india_railways--
+insert into "kerala_waterways"(osm_id, name, type, width, the_geom, state) 
+select p.osm_id, p.name, p.type, p.width, p.the_geom, p.state from public."india_waterways" p where state = 'Kerala'
+
+select * from kerala_waterways
+-----------------------------------------------state plane coordinate in meter and feet-------------------------------------------
+SELECT ST_Area(the_geom) As sqft, 
+	ST_Area(the_geom)*POWER(0.3048,2) As sqm
+		FROM (SELECT
+			ST_GeomFromText('POLYGON((743238 2967416,743238 2967450,
+			743265 2967450,743265.625 2967416,743238 2967416))',2249) ) As foo(the_geom);
+select * from "Neighborhood" where "Neighborhood".gid = 1
+SELECT ST_Area(the_geom) As sqft, 
+	ST_Area(the_geom)*POWER(0.3048,2) As sqm
+		FROM (select "Neighborhood".the_geom from "Neighborhood"  where "Neighborhood".gid = 1) as fee(the_geom)
+--------------------------------------------st_lengthz()--------------------------------------------------------------------
+ALTER TABLE "Street"
+ADD "length_feet" double precision
+
+update "Street" set length_feet = st_length("Street".the_geom)
+
+1 foot	0.0003048 KM
+1 foot	0.3048 M
+1 foot	30.48 CM
+1 foot	304.8 MM
+1 foot	0.000189394 Mile
+1 foot	0.333333 yard
+1 foot 	12 inch
+1 foot	0.000164579
 References
 1 http://mashable.com/2011/11/17/free-font-creation-tools/
 2 http://www.myscriptfont.com/
 3 http://online2pdf.com/pdf2excel
 4. http://overpass-turbo.eu/
 5. http://code.google.com/p/data-extraction-facebook/source/browse/#svn%2Ftrunk%2Fcom%2Fseis734%2Flogin%253Fstate%253Dclosed
+6. http://www.algomation.com 
